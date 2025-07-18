@@ -1,0 +1,219 @@
+/* === GENERAL STYLES & VARIABLES === */
+:root {
+    --bg-color: #dddfff;
+    --text-dark: #1f2937;
+    --text-muted: #4b5563;
+}
+body { margin: 0; font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+#navbar-placeholder { height: 80px; }
+
+/* === ERP HERO SECTION (NEW PARALLAX LAYOUT) === */
+.erp-hero {
+    /* No more crazy height. It's a standard section now. */
+    min-height: 100vh;
+    padding: 60px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Important for parallax */
+}
+
+.hero-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Text Content Styling */
+.hero-text-content {
+    text-align: center;
+    max-width: 700px;
+    margin-bottom: 60px; /* Space between text and video */
+    z-index: 2; /* Ensure it's on top */
+}
+.hero-text-content h1 { font-size: clamp(2.75rem, 6vw, 4.25rem); font-weight: 800; line-height: 1.1; margin: 0 0 24px 0; }
+.hero-text-content p { font-size: 1.125rem; color: var(--text-muted); margin: 0 auto 40px auto; max-width: 550px; }
+
+.btn-demo {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--text-dark);
+    color: #fff;
+    border-radius: 9999px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-demo:hover { background: #000; transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+/* Video Wrapper Styling (TALLER) */
+.hero-video-wrapper {
+    width: 90%;
+    max-width: 1200px; /* Wider for more impact */
+    height: 70vh; /* Taller video container */
+    border-radius: 20px; /* Softer radius */
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    overflow: hidden;
+    z-index: 1;
+}
+.hero-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Dummy section for demonstrating scroll */
+.next-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+
+
+
+/* === APPEND THESE STYLES TO YOUR erp.css FILE === */
+
+/* --- Universal Section Title Styling --- */
+.section-title { font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700; text-align: center; }
+.section-subtitle { font-size: 1.125rem; color: var(--text-muted); text-align: center; }
+
+/* === What You Get Section === */
+.features-list-section { padding: 80px 24px; }
+.features-list-container { max-width: 900px; margin: 0 auto; }
+.features-list-section .section-title { margin-bottom: 60px; }
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 80px; }
+.features-grid ul { list-style: none; margin: 0; padding: 0; }
+.features-grid li { font-size: 1.125rem; font-weight: 500; position: relative; padding-left: 28px; margin-bottom: 16px; }
+.features-grid li::before { content: '•'; position: absolute; left: 0; color: var(--plegma-blue); font-size: 1.5rem; line-height: 1; }
+
+/* === Visual Feature Showcase Section === */
+.showcase-section { padding: 80px 24px; }
+.showcase-container { max-width: 1000px; margin: 0 auto; }
+.tabs-nav { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+.tab-btn { padding: 10px 20px; font-size: 1rem; font-weight: 600; border: 1px solid #ccc; background: #fff; border-radius: 999px; cursor: pointer; transition: all 0.3s ease; }
+.tab-btn.active, .tab-btn:hover { background: var(--text-dark); color: #fff; border-color: var(--text-dark); }
+.tabs-content { position: relative; width: 100%; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2); }
+.tab-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease-in-out; }
+.tab-image.active { opacity: 1; }
+
+/* === ERP Workflow Section === */
+.workflow-section { padding: 80px 24px; }
+.workflow-container { max-width: 900px; margin: 0 auto; }
+.workflow-section .section-title { margin-bottom: 60px; }
+.workflow-list { display: flex; flex-direction: column; }
+.workflow-step { display: grid; grid-template-columns: 80px 1fr 2fr; align-items: center; gap: 40px; padding: 32px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.workflow-step:first-child { border-top: 1px solid rgba(0,0,0,0.1); }
+.step-number { font-size: 2.5rem; font-weight: 700; color: #ccc; }
+.step-arrow { width: 100%; height: 2px; background: #ccc; position: relative; }
+.step-arrow::after { content: ''; position: absolute; right: -1px; top: -4px; width: 10px; height: 10px; border-top: 2px solid #ccc; border-right: 2px solid #ccc; transform: rotate(45deg); }
+.step-description { font-size: 1.25rem; font-weight: 600; text-align: left; }
+
+/* DELETE the old testimonials and final-cta styles and REPLACE with this */
+
+/* === Testimonials Section Styling (Auto-Slider) === */
+.testimonials-section {
+    padding: 120px 0;
+    background-color: var(--bg-color);
+}
+.testimonials-section .section-title {
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.testimonial-marquee {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: fit-content;
+    animation: horizontal-scroll 60s linear infinite;
+}
+
+@keyframes horizontal-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.testimonial-marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.testimonial-card {
+    background: var(--plegma-black); /* BLACK cards as requested */
+    color: #fff;
+    padding: 32px;
+    border-radius: 16px;
+    width: 420px; /* A good width for a marquee */
+    flex-shrink: 0;
+    margin: 0 16px; /* Spacing between cards */
+    display: flex;
+    flex-direction: column;
+}
+
+.quote { font-size: 1rem; line-height: 1.6; margin: 0 0 24px 0; font-style: italic; opacity: 0.9; flex-grow: 1; }
+.author { display: flex; align-items: center; gap: 12px; }
+.author img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.author strong { font-weight: 600; }
+.author span { font-size: 0.9rem; color: #a1a1aa; }
+
+
+/* === Final CTA Section Styling (Corrected Design) === */
+.final-cta-section {
+    padding: 0 24px 120px 24px;
+    background-color: var(--bg-color);
+}
+.cta-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--plegma-blue); /* BLUE background as requested */
+    color: #fff;
+    border-radius: 24px;
+    padding: 80px 40px;
+    text-align: center;
+}
+.cta-container h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; margin: 0 0 16px 0; }
+.cta-container p { font-size: 1.25rem; opacity: 0.9; margin: 0 0 40px 0; }
+.cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn-cta { padding: 14px 32px; border-radius: 9999px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid transparent; transition: all 0.3s ease; }
+
+/* "Get In Touch" Button - WHITE outline on BLUE background */
+.btn-cta-primary {
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+}
+.btn-cta-primary:hover {
+    background: #fff;
+    color: var(--plegma-blue);
+}
+
+/* "Get demo" Button - BLACK fill */
+.btn-cta-secondary {
+    background: var(--plegma-black);
+    color: #fff;
+}
+.btn-cta-secondary:hover {
+    background: #222;
+    transform: translateY(-3px);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .workflow-step { grid-template-columns: 50px 1fr; gap: 20px; }
+    .step-arrow { display: none; }
+    .step-description { text-align: left; }
+}

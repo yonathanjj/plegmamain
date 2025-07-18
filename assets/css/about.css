@@ -1,0 +1,320 @@
+/* === GENERAL STYLES & VARIABLES FOR ABOUT PAGE === */
+:root {
+    --bg-color: #dddfff;
+    --plegma-blue: #0000ff;
+    --text-dark: #1f2937;
+    --text-muted: #4b5563;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+#navbar-placeholder { height: 80px; }
+
+/* === ABOUT HERO SECTION (REFINED) === */
+.about-hero {
+    min-height: auto;
+    padding: 100px 24px 80px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.hero-content h1 span {
+    display: block;
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 32px auto 0 auto;
+}
+
+.hero-cta {
+    margin-top: 40px;
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: var(--plegma-blue);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+    background-color: #0000cc;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 255, 0.3);
+}
+
+/* === MISSION & VISION SECTION === */
+.mission-vision-section {
+    padding: 40px 24px 120px 24px;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.statement-card {
+    display: flex;
+    flex-direction: column;
+    padding: 48px;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 255, 0.2);
+    background: linear-gradient(180deg, var(--plegma-blue) 0%, rgba(0, 0, 255, 0) 100%);
+}
+
+.statement-card h3 {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.statement-card p {
+    font-size: 1.125rem;
+    text-align: center;
+    line-height: 1.7;
+    opacity: 0.9;
+    flex-grow: 1;
+    color: #fff;
+}
+
+.statement-icon {
+    margin-top: 40px;
+    height: 64px;
+    align-self: center;
+    color: var(--text-dark); /* Dark icon color for visibility */
+}
+
+.statement-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mission-vision-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+/* === APPEND THESE STYLES TO YOUR about.css FILE === */
+
+/* === "What We Stand For" Section Styling === */
+.values-section {
+    padding: 120px 24px;
+    /* This section sits on the main light page background */
+}
+
+.values-section .section-title {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.values-grid {
+    display: grid;
+    /* A 3-column grid */
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--text-muted); /* Top border of the grid */
+    border-left: 1px solid var(--text-muted); /* Left border of the grid */
+}
+
+.value-item {
+    padding: 40px;
+    border-right: 1px solid var(--text-muted);
+    border-bottom: 1px solid var(--text-muted);
+}
+
+.value-item h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+}
+
+.value-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* === Responsive Grid for "What We Stand For" === */
+@media (max-width: 900px) {
+    /* Switch to a 2-column layout */
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    /* Switch to a 1-column layout */
+    .values-grid {
+        grid-template-columns: 1fr;
+        /* Remove the side borders on mobile */
+        border-left: none;
+        border-right: none;
+    }
+
+    .value-item {
+        /* All items just need a bottom border, except the very last one */
+        border-right: none;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+
+/* REPLACE the old .presence-section and .final-cta-section styles with this */
+
+/* === "Our Presence" Section Styling (with iframes) === */
+.presence-section {
+    padding: 120px 24px;
+}
+
+.presence-section .section-title {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.presence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px; /* This is the width we want the CTA to match */
+    margin: 0 auto;
+}
+
+.location-item {
+    text-align: center;
+}
+
+/* Renamed from .map-link to .map-container */
+.map-container {
+    border-radius: 20px;
+    overflow: hidden; /* This ensures the iframe respects the border-radius */
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 4 / 3; /* Maintain a consistent shape */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%; /* Fill the container */
+    display: block;
+    border: none; /* Remove default iframe border */
+}
+
+.location-item:hover .map-container {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 255, 0.2);
+}
+
+.location-info {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.location-info strong {
+    font-weight: 700;
+}
+
+/* === Final CTA Section Styling (Wider) === */
+.final-cta-section {
+    padding: 0 24px 120px 24px;
+}
+
+.final-cta-section .cta-container {
+    /* Updated max-width to match .presence-grid */
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--plegma-blue);
+    color: #fff;
+    border-radius: 24px;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.final-cta-section .cta-container h2 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+}
+
+.final-cta-section .cta-container p {
+    font-size: 1.125rem;
+    opacity: 0.9;
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+}
+
+.final-cta-section .btn-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    color: var(--plegma-blue);
+}
+
+.final-cta-section .btn-cta:hover {
+    background-color: #eee;
+    transform: translateY(-3px);
+}
+
+/* Responsive adjustments for Presence section */
+@media (max-width: 768px) {
+    .presence-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}

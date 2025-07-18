@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERP Solutions - Plegma</title>
+  <link rel="stylesheet" href="assets/css/erp.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<main>
+  <!-- The hero section no longer needs to be extra tall -->
+  <section class="erp-hero">
+    <div class="hero-container">
+      <div class="hero-text-content">
+        <h1 class="anim-title">Smart ERP for African Businesses</h1>
+        <p class="anim-text">
+          Our ERP systems give you complete control over your inventory, staff, sales, and operations — built around how your business really works.
+        </p>
+        <a href="#demo" class="btn-demo anim-button">Book a demo</a>
+      </div>
+      <div class="hero-video-wrapper">
+        <video src="assets/img/vid.mp4"
+               poster="https://via.placeholder.com/1200x800/fff/333.png?text=Your+ERP+Video+Poster"
+               autoplay loop muted playsinline>
+        </video>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- === APPEND THIS HTML AFTER THE erp-hero section === -->
+
+  <!-- == What You Get Section == -->
+  <section class="features-list-section">
+    <div class="features-list-container">
+      <h2 class="section-title anim-title">What You Get With Plegma ERP</h2>
+      <div class="features-grid">
+        <ul>
+          <li class="anim-list-item">Inventory Management</li>
+          <li class="anim-list-item">Sales & Purchase Tracking</li>
+          <li class="anim-list-item">Staff Attendance + HR</li>
+        </ul>
+        <ul>
+          <li class="anim-list-item">Payroll & Finance</li>
+          <li class="anim-list-item">Multi-Branch Views</li>
+          <li class="anim-list-item">Reports & Analytics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- == Visual Feature Showcase Section (NEW) == -->
+  <section class="showcase-section">
+    <div class="showcase-container">
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="1">Inventory</button>
+        <button class="tab-btn" data-tab="2">Sales Dashboard</button>
+        <button class="tab-btn" data-tab="3">HR Portal</button>
+        <button class="tab-btn" data-tab="4">Analytics</button>
+      </div>
+      <div class="tabs-content">
+        <img src="https://via.placeholder.com/1000x600/ccc/333.png?text=Inventory+Screen" alt="Inventory Management Screenshot" class="tab-image active" data-tab="1">
+        <img src="https://via.placeholder.com/1000x600/aaa/fff.png?text=Sales+Dashboard+Screen" alt="Sales Dashboard Screenshot" class="tab-image" data-tab="2">
+        <img src="https://via.placeholder.com/1000x600/888/fff.png?text=HR+Portal+Screen" alt="HR Portal Screenshot" class="tab-image" data-tab="3">
+        <img src="https://via.placeholder.com/1000x600/666/fff.png?text=Analytics+Screen" alt="Analytics Screenshot" class="tab-image" data-tab="4">
+      </div>
+    </div>
+  </section>
+
+  <!-- == ERP Workflow Section == -->
+  <section class="workflow-section">
+    <div class="workflow-container">
+      <h2 class="section-title anim-title">ERP Workflow</h2>
+      <div class="workflow-list">
+        <div class="workflow-step anim-step">
+          <span class="step-number">1</span>
+          <span class="step-arrow"></span>
+          <span class="step-description">You share your current workflow</span>
+        </div>
+        <div class="workflow-step anim-step">
+          <span class="step-number">2</span>
+          <span class="step-arrow"></span>
+          <span class="step-description">We build the ERP around your operations</span>
+        </div>
+        <div class="workflow-step anim-step">
+          <span class="step-number">3</span>
+          <span class="step-arrow"></span>
+          <span class="step-description">We onboard your team + provide training</span>
+        </div>
+        <div class="workflow-step anim-step">
+          <span class="step-number">4</span>
+          <span class="step-arrow"></span>
+          <span class="step-description">You monitor everything from one dashboard</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELETE the old testimonials and final-cta sections and REPLACE with this -->
+
+  <!-- == Testimonials Section Start (Correct Auto-Slider Design) == -->
+  <section class="testimonials-section">
+    <h2 class="section-title anim-title">Testimonials</h2>
+
+    <!-- This is the viewport for our slider -->
+    <div class="testimonial-marquee">
+      <!-- The track contains two identical sets of cards for a seamless loop -->
+      <div class="marquee-track">
+        <!-- Set 1 -->
+        <div class="testimonial-card">
+          <p class="quote">"Plegma transformed our operations. Their ERP is intuitive and powerful, built with a deep understanding of our local market needs."</p>
+          <div class="author"><img src="https://i.pravatar.cc/40?u=1" alt="Avatar"><div><strong>Abebe Bikila</strong><span>CEO, TechCorp Addis</span></div></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"The best tech partner in Rwanda. Their support is unmatched and the system they built for us has been a complete game-changer."</p>
+          <div class="author"><img src="https://i.pravatar.cc/40?u=2" alt="Avatar"><div><strong>Chantal Umutesi</strong><span>Manager, Kigali Innovations</span></div></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"Our database is finally secure and scalable thanks to their team. We now have clarity on our data that we never thought possible."</p>
+          <div class="author"><img src="https://i.pravatar.cc/40?u=3" alt="Avatar"><div><strong>David Abebe</strong><span>IT Director, EthioLogistics</span></div></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"The website they built for us has doubled our online engagement. Fast, professional, and they actually listen to your needs."</p>
+          <div class="author"><img src="https://i.pravatar.cc/40?u=5" alt="Avatar"><div><strong>Samuel Tsegaye</strong><span>Marketing Head, Addis Goods</span></div></div>
+        </div>
+
+        <!-- Set 2 (Duplicate for seamless loop) -->
+        <div class="testimonial-card">
+          <p class="quote">"Plegma transformed our operations. Their ERP is intuitive and powerful, built with a deep understanding of our local market needs."</p>
+          <div class="author"><img src="https://i.pravatar.cc/40?u=1" alt="Avatar"><div><strong>Abebe Bikila</strong><span>CEO, TechCorp Addis</span></div></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"The best tech partner in Rwanda. Their support is unmatched and the system they built for us has been a complete game-changer."</p>
+          <div class="author"><img src="https://i.pravatar.cc/40?u=2" alt="Avatar"><div><strong>Chantal Umutesi</strong><span>Manager, Kigali Innovations</span></div></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"Our database is finally secure and scalable thanks to their team. We now have clarity on our data that we never thought possible."</p>
+          <div class="author"><img src="https://i.pravatar.cc/40?u=3" alt="Avatar"><div><strong>David Abebe</strong><span>IT Director, EthioLogistics</span></div></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"The website they built for us has doubled our online engagement. Fast, professional, and they actually listen to your needs."</p>
+          <div class="author"><img src="https://i.pravatar.cc/40?u=5" alt="Avatar"><div><strong>Samuel Tsegaye</strong><span>Marketing Head, Addis Goods</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- == Testimonials Section End == -->
+
+
+  <!-- == Final CTA Section Start (Corrected Design) == -->
+  <section class="final-cta-section">
+    <div class="cta-container anim-cta">
+      <h2>Ready to simplify your business with smart tools?</h2>
+      <p>Let's talk today.</p>
+      <div class="cta-buttons">
+        <a href="/contact.html" class="btn-cta btn-cta-primary">Get In Touch</a>
+        <a href="/demo.html" class="btn-cta btn-cta-secondary">Get demo</a>
+      </div>
+    </div>
+  </section>
+  <!-- == Final CTA Section End == -->
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="loader.js"></script>
+<script src="assets/js/erp.js"></script>
+
+</body>
+</html>

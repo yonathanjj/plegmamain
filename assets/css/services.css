@@ -1,169 +1,827 @@
-/* =================================================== */
-/*                 ERP SOLUTIONS PAGE STYLES           */
-/* =================================================== */
-
-/* --- General page background --- */
-body.erp-page {
-    background-color: var(--color-light-bg);
+/* === GENERAL STYLES & VARIABLES FOR SERVICES PAGE === */
+:root {
+    --bg-color: #dddfff;
+    --plegma-blue: #0000ff;
+    --text-dark: #1f2937;
+    --text-muted: #4b5563;
 }
 
-/* --- Shared h2 style for this page --- */
-.erp-page h2 {
-    font-family: var(--font-body);
-    font-weight: 800;
-    font-size: 2.25rem;
-    color: var(--color-text-dark);
-    margin-bottom: 60px;
-    text-align: center;
-}
-
-/* --- ERP Hero --- */
-.erp-hero {
-    text-align: center;
-    padding: 100px 0 80px 0;
-}
-.erp-hero-title {
-    font-family: var(--font-body);
-    font-weight: 800;
-    font-size: 3.5rem;
-    max-width: 800px;
-    margin: 0 auto 20px;
-    color: var(--color-text-dark);
-}
-.erp-hero-subtitle {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto 30px;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-}
-.erp-hero-image {
-    margin-top: 50px;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.2);
-    overflow: hidden;
-}
-
-/* --- What You Get --- */
-.what-you-get {
-    padding-bottom: 80px;
-}
-.features-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px 40px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-.features-list ul {
-    list-style: none;
-    padding: 0;
+body {
     margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
-.features-list li {
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 10px 0 10px 25px;
+
+#navbar-placeholder { height: 80px; }
+
+/* === SERVICES HERO SECTION === */
+.services-hero {
+    min-height: calc(100vh - 80px); /* Full viewport height minus navbar */
+    display: flex;
+    align-items: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden; /* Important for containing the drone */
+}
+
+.hero-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.8fr; /* Left column is slightly larger */
+    align-items: center;
+    gap: 60px;
+}
+
+/* === Text Content Styling === */
+.hero-text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-text-content h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin: 0 0 24px 0;
+}
+
+/* Allows each line of the heading to be animated */
+.hero-text-content h1 span {
+    display: block;
+}
+
+.hero-text-content p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    max-width: 550px;
+    margin: 0 0 40px 0;
+}
+
+/* Button Styling */
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn {
+    padding: 14px 32px;
+    border-radius: 9999px; /* Pill shape */
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: transparent;
+    color: var(--plegma-blue);
+    border-color: var(--plegma-blue);
+}
+.btn-primary:hover {
+    background: var(--plegma-blue);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: var(--text-dark);
+    color: #fff;
+}
+.btn-secondary:hover {
+    background: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* === Image Content Styling === */
+.hero-image-content {
     position: relative;
 }
+
+.drone-image {
+    width: 100%;
+    height: auto;
+    /* This will be animated by GSAP */
+}
+
+
+/* === Responsive Design === */
+@media (max-width: 900px) {
+    .hero-container {
+        grid-template-columns: 1fr; /* Stack the columns */
+        text-align: center;
+    }
+    .hero-image-content {
+        grid-row: 1; /* Move the image to the top on mobile */
+        max-width: 400px;
+        margin: 0 auto 40px auto;
+    }
+    .hero-text-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+
+/* REPLACE the old ".core-services-section" styles with this */
+
+/* === Core Services Section Styling (Images in HTML) === */
+.core-services-section {
+    padding: 120px 24px;
+    background-color: var(--bg-color);
+}
+
+.core-services-section .section-title {
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 80px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    position: relative; /* CRITICAL for positioning children */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 480px;
+    padding: 32px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2);
+    overflow: hidden; /* This hides the parts of the image that move outside */
+    transition: transform 0.4s ease;
+    color: #fff;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+/* The background image itself */
+.card-bg-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0; /* Sits at the very back */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* The dark overlay that sits ON TOP of the image but BEHIND the text */
+.service-card.has-bg-image::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+    z-index: 1; /* Above image, below text */
+}
+
+/* The third card with the transparent gradient */
+#database-mgmt {
+    background: linear-gradient(180deg, var(--plegma-blue) 0%, rgba(0, 0, 255, 0) 100%);
+    border: 1px solid rgba(0, 0, 255, 0.3);
+}
+#database-mgmt .card-description p {
+    color: var(--text-dark);
+}
+
+
+/* Text content styling */
+.service-card h3, .service-card .card-description {
+    position: relative;
+    z-index: 2; /* Ensures text is always on top */
+}
+
+.service-card h3 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.card-description p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 350px;
+}
+.card-description p:first-of-type {
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* === APPEND THESE STYLES TO YOUR services.css FILE === */
+
+/* === Features Accordion Section Styling === */
+.features-section {
+    padding: 120px 24px;
+    background-color: var(--bg-color);
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start; /* Align columns to the top */
+}
+
+.features-description h2 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 24px 0;
+}
+
+.features-description p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 450px;
+}
+
+/* Accordion Styling */
+.accordion {
+    width: 100%;
+}
+
+.accordion-item {
+    border-bottom: 1px solid rgba(31, 41, 55, 0.2);
+}
+.accordion-item:first-child {
+    border-top: 1px solid rgba(31, 41, 55, 0.2);
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+}
+
+.item-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.item-icon {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--text-dark);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+/* Create the plus sign using pseudo-elements */
+.item-icon::before, .item-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--text-dark);
+    transition: transform 0.3s ease;
+}
+.item-icon::before {
+    width: 14px;
+    height: 2px;
+    transform: translate(-50%, -50%);
+}
+.item-icon::after {
+    width: 2px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+}
+
+/* Style for the active/open state */
+.accordion-item.active .item-icon {
+    transform: rotate(135deg);
+}
+.accordion-item.active .item-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* The content that gets revealed */
+.accordion-content {
+    /* Critical: Set height to 0 and hide overflow */
+    height: 0;
+    overflow: hidden;
+    /* We will animate height with GSAP */
+}
+
+.accordion-content p {
+    padding: 0 0 24px 0;
+    margin: 0;
+    color: var(--text-muted);
+    max-width: 90%;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .features-container {
+        grid-template-columns: 1fr; /* Stack columns on mobile */
+        gap: 60px;
+    }
+    .features-description {
+        text-align: center;
+    }
+    .features-description p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+
+
+
+
+/* === APPEND THESE STYLES TO YOUR services.css FILE === */
+
+/* === Website Features Section Styling === */
+.website-features-section {
+    padding: 120px 24px;
+    background-color: var(--bg-color);
+}
+
+.website-features-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.text-content h2 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 40px 0;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+}
+
+.features-list li {
+    font-size: 1.125rem;
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+}
+
+/* Create the bullet point using a pseudo-element */
 .features-list li::before {
     content: '•';
-    color: var(--color-bright-blue);
     position: absolute;
     left: 0;
-    top: 10px;
+    color: var(--plegma-blue);
     font-size: 1.5rem;
     line-height: 1;
 }
 
-/* --- ERP Workflow --- */
-.erp-workflow {
-    padding-bottom: 100px;
+.summary-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.6;
+    max-width: 450px;
 }
-.workflow-steps {
-    max-width: 900px;
+
+/* Image Slider Styling */
+.image-slider-container {
+    background-color: #e9e9f5; /* Light gray background for the container */
+    padding: 24px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);
+}
+
+.slider-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden; /* Hide images that are not active */
+}
+
+.slider-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* All images start as invisible, JS will make the first one visible */
+    opacity: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .website-features-container {
+        grid-template-columns: 1fr; /* Stack columns */
+    }
+}
+
+
+
+
+
+/* DELETE the old .flowchart-section and .addons-section styles and REPLACE with this */
+
+/* === Backend & Add-Ons Section Styling (New "Data Stack" Design) === */
+.backend-section {
+    padding: 120px 24px;
+    background-color: var(--bg-color);
+}
+
+.backend-container {
+    max-width: 1200px;
     margin: 0 auto;
 }
-.workflow-step {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    padding: 30px 0;
-    border-bottom: 1px solid #d1d5db;
+
+.backend-header {
+    text-align: center;
+    margin-bottom: 80px;
 }
-.step-number {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--color-text-dark);
-    min-width: 50px;
+.backend-header .section-title {
+    margin-bottom: 16px;
+}
+
+.backend-content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Visual side is slightly larger */
+    align-items: center;
+    gap: 80px;
+}
+
+/* The "Data Stack" visual container */
+.stack-visual {
+    position: relative;
+    height: 450px;
+    /* This creates the 3D space for the layers */
+    perspective: 1500px;
+}
+
+.stack-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    /* The "glassmorphism" effect */
+    background: linear-gradient(135deg, rgba(0,0,255,0.1), rgba(0,0,255,0.05));
+    border: 1px solid rgba(221, 223, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    /* GSAP will animate these properties */
+    transform-origin: center;
+}
+
+.stack-layer span {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+    opacity: 0.6;
+}
+
+/* Position each layer in 3D space */
+#layer-1 { transform: rotateX(45deg) translateZ(120px); }
+#layer-2 { transform: rotateX(45deg) translateZ(40px); }
+#layer-3 { transform: rotateX(45deg) translateZ(-40px); }
+#layer-4 { transform: rotateX(45deg) translateZ(-120px); }
+
+
+/* Add-On Services content */
+.addons-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+}
+.addons-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.addons-list li {
+    font-size: 1.125rem;
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+.addons-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--plegma-blue);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.backend-footer {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 40px;
+    color: var(--text-dark);
+}
+
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .backend-content-grid {
+        grid-template-columns: 1fr; /* Stack the columns */
+    }
+    .stack-visual {
+        height: 300px;
+        margin-bottom: 60px;
+    }
+    .addons-content { text-align: center; }
+    .addons-list { text-align: left; display: inline-block; }
+}
+
+
+
+
+
+
+/* === APPEND THESE STYLES TO YOUR services.css FILE === */
+
+/* === Industries We Serve Section Styling === */
+.industries-section {
+    padding: 120px 0; /* Vertical padding only */
+    background-color: var(--bg-color);
+}
+.industries-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
     text-align: center;
 }
-.step-connector {
-    flex-grow: 1;
-    height: 2px;
-    background-color: #d1d5db;
-    position: relative;
+.industries-section .section-title { margin-bottom: 16px; }
+.industries-section .section-subtitle { color: var(--text-muted); margin-bottom: 60px; }
+
+.industries-marquee {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
-.step-connector::after {
-    content: '►';
-    position: absolute;
-    right: -10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #d1d5db;
-    font-size: 0.8rem;
+.marquee-track {
+    display: flex;
+    width: fit-content;
+    animation: marquee-scroll 30s linear infinite;
+}
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.industry-item {
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 0 40px;
+    flex-shrink: 0;
+}
+
+
+/* REPLACE the old ".process-section" styles with this */
+
+/* === How We Work Section Styling (Simplified) === */
+.process-section {
+    padding: 0 24px 120px 24px;
+    background-color: var(--bg-color);
+}
+.process-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.process-section .section-title {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.process-list {
+    display: flex;
+    flex-direction: column;
+}
+.process-step {
+    display: grid;
+    grid-template-columns: 80px 1.5fr 2fr;
+    align-items: center;
+    gap: 40px;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+.process-step:first-child {
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Add a subtle hover effect to the entire row for better interaction */
+.process-step:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+.step-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
 }
 .step-description {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-text-dark);
-    flex-basis: 50%;
+    font-size: 1.125rem;
+    color: var(--text-muted);
 }
 
-/* --- ERP in Action --- */
-.erp-in-action {
-    padding-bottom: 100px;
-}
-.video-wrapper {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.2);
-}
-.erp-video {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-.play-button-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    z-index: 10;
-}
-.video-wrapper.is-playing .play-button-overlay {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-    pointer-events: none;
-}
-.play-button-overlay:hover {
-    transform: translate(-50%, -50%) scale(1.1);
-}
-
-/* =================================================== */
-/*            ERP PAGE - RESPONSIVE STYLES             */
-/* =================================================== */
+/* Responsive Styles */
 @media (max-width: 768px) {
-    .erp-hero-title { font-size: 2.5rem; }
-    .features-list { grid-template-columns: 1fr; }
-    .workflow-step { flex-wrap: wrap; }
-    .step-description { font-size: 1.2rem; flex-basis: 100%; text-align: center; margin-top: 10px; }
-    .step-number { flex-basis: 10%; }
-    .step-connector { flex-basis: 80%; }
+    .process-step {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        text-align: center;
+        padding: 24px 12px;
+    }
+    .step-number { display: none; }
+    .step-title { font-size: 1.5rem; }
+    .step-description { font-size: 1rem; }
+}
+
+
+
+
+
+
+/* DELETE the old tech-stack and final-cta styles and REPLACE with this */
+
+/* === Technologies We Use Section Styling (Logo Slider) === */
+.tech-slider-section {
+    padding: 120px 0;
+    background-color: var(--bg-color);
+}
+.tech-slider-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+.tech-slider-section .section-title {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.tech-slider {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.slider-track {
+    display: flex;
+    width: fit-content;
+    /* The CSS animation for the infinite scroll */
+    animation: infinite-scroll 40s linear infinite;
+}
+
+@keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); } /* Animate to half the track's width */
+}
+
+/* Pause the animation on hover */
+.tech-slider:hover .slider-track {
+    animation-play-state: paused;
+}
+
+.logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+    height: 80px; /* Give the track a consistent height */
+}
+
+.logo-item img {
+    height: 48px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.logo-item:hover img {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* === Final CTA Section Styling (Wider) === */
+.final-cta-section {
+    padding: 0 24px 120px 24px;
+    background-color: var(--bg-color);
+}
+.cta-container {
+    max-width: 1200px; /* Match the width of the main content sections */
+    margin: 0 auto;
+    background: var(--plegma-blue);
+    color: #fff;
+    border-radius: 24px;
+    padding: 80px 40px;
+    text-align: center;
+}
+.cta-container h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+}
+.cta-container p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin: 0 0 40px 0;
+}
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.btn-cta {
+    padding: 14px 32px;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.btn-cta-primary {
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
+}
+.btn-cta-primary:hover {
+    background-color: #fff;
+    color: var(--plegma-blue);
+}
+.btn-cta-secondary {
+    background-color: var(--text-dark);
+    color: #fff;
+}
+.btn-cta-secondary:hover {
+    background-color: #000;
+    transform: translateY(-3px);
 }
