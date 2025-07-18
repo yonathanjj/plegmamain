@@ -1,0 +1,275 @@
+<!-- GSAP CDN for animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<style>
+  :root {
+      /* --- Updated Color Palette --- */
+      --brand-blue: #0000FF; /* The new blue accent color */
+      --dark-bg: #111111;
+      --text-light: #EAEAEA;
+      --text-dark: #1F2937;
+      --text-muted: #888888;
+      --nav-height: 80px;
+  }
+
+  .main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      z-index: 1000;
+      transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-bottom 0.4s ease;
+      will-change: transform;
+  }
+
+  .main-nav.scrolled {
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-container {
+      width: 100%;
+      max-width: 1300px;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .nav-logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+  }
+
+  /* --- Styling for the image logo --- */
+  .navbar-logo-img {
+      height: 50px;
+      width: auto;
+      max-width: 200px;
+  }
+
+  .nav-links {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 45px;
+  }
+
+  .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 0;
+      position: relative;
+  }
+
+  /* Clean underline hover effect - Updated to use blue */
+  .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--brand-blue); /* CHANGED */
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links a:hover::after {
+      width: 100%;
+  }
+
+  .nav-cta-buttons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+  }
+
+  .nav-cta {
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      font-size: 0.95rem;
+  }
+
+  .nav-cta.login {
+      color: var(--text-dark);
+  }
+  .nav-cta.login:hover {
+      background-color: rgba(0,0,0,0.05);
+  }
+
+  /* CTA Button - Updated to use blue */
+  .nav-cta.get-demo {
+      background-color: var(--brand-blue); /* CHANGED */
+      color: white;
+  }
+  .nav-cta.get-demo:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+      /* Shadow updated to a blue glow */
+      box-shadow: 0 4px 15px rgba(0, 0, 255, 0.3); /* CHANGED */
+  }
+
+  /* Hamburger Menu & Mobile Nav */
+  .hamburger-menu {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1002;
+      position: relative;
+      width: 40px;
+      height: 40px;
+  }
+  .hamburger-menu .line {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background-color: var(--text-dark);
+      margin: 5px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .hamburger-menu.active .line1 {
+      transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger-menu.active .line2 {
+      opacity: 0;
+  }
+  .hamburger-menu.active .line3 {
+      transform: translateY(-7px) rotate(-45deg);
+  }
+  .hamburger-menu.active .line {
+      background-color: var(--text-light);
+  }
+
+  .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(17, 17, 17, 0.98);
+      backdrop-filter: blur(5px);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-100%);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .mobile-nav-overlay.active {
+      transform: translateY(0);
+  }
+  .mobile-nav-links {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+  }
+  .mobile-nav-links li {
+      margin: 25px 0;
+      opacity: 0; /* For GSAP animation */
+  }
+  .mobile-nav-links a {
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--text-light);
+      text-decoration: none;
+  }
+
+  @media (max-width: 1024px) {
+      .nav-links, .nav-cta-buttons { display: none; }
+      .hamburger-menu { display: block; }
+  }
+</style>
+
+<nav class="main-nav">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a href="/">
+        <img src="assets/img/logo.png" alt="SoftWorks Logo" class="navbar-logo-img">
+      </a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="erpsolutions.html">ERP Solutions</a></li>
+      <li><a href="portfolio">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta-buttons">
+      <a href="#" class="nav-cta login">Login</a>
+      <a href="#" class="nav-cta get-demo">Get Demo</a>
+    </div>
+
+    <button class="hamburger-menu" aria-label="Toggle Menu">
+      <span class="line line1"></span>
+      <span class="line line2"></span>
+      <span class="line line3"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay">
+  <ul class="mobile-nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">ERP Solutions</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</div>
+
+<script>
+  const nav = document.querySelector('.main-nav');
+  const hamburger = document.querySelector('.hamburger-menu');
+  const mobileNav = document.querySelector('.mobile-nav-overlay');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-links li');
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) { nav.classList.add('scrolled'); }
+      else { nav.classList.remove('scrolled'); }
+
+      if (lastScrollY < window.scrollY && window.scrollY > 150) {
+          gsap.to(nav, { y: '-100%', duration: 0.4, ease: 'power2.out' });
+      } else {
+          gsap.to(nav, { y: '0%', duration: 0.4, ease: 'power2.out' });
+      }
+      lastScrollY = window.scrollY;
+  });
+
+  hamburger.addEventListener('click', () => {
+      const isActive = hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+
+      if (isActive) {
+          gsap.fromTo(mobileNavLinks,
+              { y: 30, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power3.out', delay: 0.3 }
+          );
+      }
+  });
+</script>

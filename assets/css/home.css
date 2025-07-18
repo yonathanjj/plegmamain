@@ -1,0 +1,658 @@
+:root {
+    --plegma-blue: #0000ff;
+    --plegma-black: #00000a;
+    --plegma-white: #dddfff;
+    --dark-bg: var(--plegma-black);
+    --primary-accent: var(--plegma-blue);
+    --text-light: #f0f0f5;
+    --text-muted-light: #a1a1aa;
+    --border-light: rgba(221, 223, 255, 0.3);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+#navbar-placeholder { height: 80px; }
+
+.hero-section {
+    position: relative;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#gradient-canvas {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+}
+
+.hero-content {
+    position: relative; z-index: 1; text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 32px; max-width: 800px; padding: 0 24px;
+}
+
+.hero-text-wrapper, .hero-buttons { opacity: 0; }
+.anim-hero-element { margin: 0; }
+.hero-text-wrapper h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+.hero-text-wrapper p { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-muted-light); max-width: 650px; line-height: 1.6; }
+
+/* === BUTTON STYLING FOR JS-DRIVEN HOVER === */
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+.btn {
+    position: relative;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    overflow: hidden; /* This is absolutely critical */
+    z-index: 1;
+    -webkit-tap-highlight-color: transparent; /* For mobile */
+}
+
+/* Ensure button text is always on top of the ripple */
+.btn-secondary {
+    color: var(--plegma-white);
+    border-color: var(--border-light);
+}
+
+.btn-primary {
+    background-color: var(--primary-accent);
+    color: var(--text-light);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #0000cc;
+    transform: translateY(-3px);
+}
+
+/* The ripple element, now fully controlled by JS */
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--primary-accent);
+    transform: scale(0); /* Start invisible */
+    z-index: -1; /* Position behind the text */
+}
+
+
+
+
+
+
+
+
+
+/* REPLACE all the styles from .features-section downwards with this */
+
+/* === FEATURES & SERVICES SECTION STYLING === */
+.features-section {
+    background-color: var(--plegma-white);
+    color: var(--plegma-black);
+    padding: 100px 24px;
+    position: relative;
+    z-index: 5;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.section-subtitle {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: #4b5563;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 60px auto;
+}
+
+/* === "Trusted By" Logo Marquee (REFINED) === */
+.logo-marquee {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    width: fit-content;
+    /* The 'linear' timing function is key. It ensures a constant speed with NO stopping. */
+    animation: scroll 40s linear infinite;
+}
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); } /* Moves left by the width of ONE set of logos */
+}
+
+.logo-item img {
+    height: 40px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+.logo-item:hover img {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* REPLACE the ".services-section" and its child styles in your home.css */
+
+/* === "What We Do" Section (REFINED LAYOUT) === */
+.services-section {
+    padding-top: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 10, 0.1);
+    /* We handle overflow differently now */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 255, 0.2);
+}
+
+.card-content {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+}
+
+.card-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4b5563;
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* === NEW: Inset Image Styling === */
+/* The image is now outside the .card-content div in the HTML,
+   but we style it here. */
+.service-card img {
+    width: calc(100% - 48px); /* Card width minus padding on both sides */
+    margin: 0 auto 24px auto; /* Center the image and add bottom margin */
+    border-radius: 12px; /* Softer corners for the image */
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+/* === NEW: Cooler "Learn More" Button === */
+.btn-learn-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Center text and icon */
+    gap: 8px;
+    margin-top: 24px;
+    padding: 12px 20px; /* More padding for a button-like feel */
+    color: var(--plegma-blue);
+    font-weight: 600;
+    text-decoration: none;
+    background-color: #eef2ff; /* A very light blue/lavender background */
+    border-radius: 8px; /* Rounded corners */
+    transition: all 0.3s ease;
+    width: fit-content; /* Button width adjusts to content */
+    align-self: flex-start; /* Align button to the left */
+}
+
+.btn-learn-more svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-learn-more:hover {
+    background-color: #e0e7ff; /* Slightly darker on hover */
+    color: #0000cc; /* Darker blue text on hover */
+    box-shadow: 0 4px 15px -5px rgba(0, 0, 255, 0.3); /* Add a subtle shadow */
+}
+
+/* This creates the cool icon animation */
+.btn-learn-more:hover svg {
+    transform: translateX(5px) rotate(-5deg);
+}
+
+
+
+
+
+
+
+
+
+/* REPLACE the old ".why-us-section" and its child styles with this */
+
+/* === "Why Us" Section Styling (REFINED) === */
+.why-us-section {
+    background-color: var(--plegma-white);
+    padding: 120px 0; /* Add vertical padding for spacing */
+}
+
+/* This is a simple wrapper to control the max-width and padding */
+.why-us-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    color: black;
+}
+
+/* This is the main dark, rounded container */
+.grid-container {
+    background-color: var(--plegma-black);
+    color: var(--text-light);
+    border-radius: 24px;
+    padding: 80px 60px; /* Generous padding */
+    margin-top: 60px; /* Space between title and the dark box */
+    position: relative; /* CRITICAL for positioning the cross lines */
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.2);
+}
+
+/* The 2x2 Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 80px 100px; /* Vertical gap, Horizontal gap */
+    position: relative;
+    z-index: 2; /* Ensures features are on top of the grid lines */
+}
+
+/* The Cross Lines */
+.grid-line {
+    position: absolute;
+    background-color: rgba(0, 0, 255, 0.4); /* Plegma Blue with transparency */
+    z-index: 1; /* Below the features, above the background */
+}
+
+.grid-line.horizontal {
+    width: 90%;
+    height: 1px;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.grid-line.vertical {
+    width: 1px;
+    height: 90%;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+}
+
+/* Individual Feature Item Styling */
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+}
+
+.feature-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.feature-text h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 4px 0; /* Added small bottom margin */
+}
+
+.feature-text p {
+    font-size: 1rem;
+    color: var(--text-muted-light);
+    margin: 0;
+    max-width: 200px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .grid-container {
+        padding: 60px 30px;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .grid-line {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* REPLACE the old ".platform-section" and its child styles with this */
+
+/* === "Platform in Action" Section Styling (FIXED & REFINED) === */
+.platform-section {
+    background-color: var(--plegma-white);
+    padding: 120px 0;
+    overflow: hidden; /* Still useful for animations */
+}
+
+.platform-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.platform-section .section-title {
+    color: var(--plegma-black);
+}
+.platform-section .section-subtitle {
+    margin-bottom: 60px;
+}
+
+/* === NEW: Image Showcase using CSS Grid === */
+/* This is the core fix. Grid handles layout without needing height hacks. */
+.image-showcase {
+    display: grid;
+    /* Create a 12-column grid to precisely place images */
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center; /* Vertically align items */
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.showcase-img {
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    object-position: top left;
+    width: 100%;
+    height: auto;
+}
+
+/* Place the PC image to span the first 10 columns */
+.img-pc {
+    grid-column: 1 / span 10;
+    grid-row: 1 / 1; /* Both images are in the same row */
+    z-index: 1;
+}
+
+/* Place the Mobile image to span from column 8 to the end */
+.img-mobile {
+    grid-column: 8 / span 5;
+    grid-row: 1 / 1;
+    z-index: 2; /* Sits on top */
+    /* Add a negative top margin to make it sit a bit higher */
+    margin-top: -5%;
+}
+
+/* Feature tags styling */
+.feature-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    /* This margin is now consistent and reliable */
+    margin-top: 60px;
+}
+.tag {
+    padding: 12px 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    background-color: #fff;
+    font-weight: 500;
+    color: var(--plegma-black);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+.tag:hover {
+    transform: translateY(-4px);
+    border-color: var(--plegma-blue);
+    color: var(--plegma-blue);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 255, 0.1);
+}
+
+/* === NEW: Refined Mobile Layout === */
+@media (max-width: 768px) {
+    .image-showcase {
+        /* Keep the grid layout, but adjust column spans */
+        align-items: flex-start; /* Align to the top */
+    }
+
+    .img-pc {
+        /* PC image now takes up less space */
+        grid-column: 1 / span 8;
+    }
+
+    .img-mobile {
+        /* Mobile image sits neatly next to it */
+        grid-column: 6 / span 7;
+        margin-top: 10%; /* Nudge it down a bit on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    /* For very small screens, stacking is unavoidable but we do it cleanly */
+    .image-showcase {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+    }
+    .img-mobile {
+        width: 60%; /* Control size explicitly */
+        margin-top: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* === APPEND THESE STYLES TO YOUR home.css FILE === */
+
+/* REPLACE the old ".testimonials-section" styles with this */
+
+/* === Testimonials Section Styling (Auto-Scroller) === */
+.testimonials-section {
+    padding: 120px 0;
+    background-color: var(--plegma-white);
+    color: var(--plegma-black);
+}
+
+.testimonial-marquee {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 60px;
+    /* Use a mask to fade the left and right edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 24px;
+    width: fit-content; /* Critical for the animation calculation */
+    flex-shrink: 0;
+}
+
+/* Animation for Right-to-Left scroll */
+.track-rtl {
+    animation: scroll-rtl 60s linear infinite;
+}
+
+@keyframes scroll-rtl {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Animation for Left-to-Right scroll */
+.track-ltr {
+    animation: scroll-ltr 60s linear infinite;
+}
+
+@keyframes scroll-ltr {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+/* Pause animation on hover for better user experience */
+.testimonial-marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.testimonial-card {
+    background: var(--plegma-black);
+    color: var(--text-light);
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 400px; /* A fixed width is best for marquees */
+    flex-shrink: 0;
+}
+
+.testimonial-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 24px 0;
+    font-style: italic;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.author strong { font-weight: 600; }
+.author span { font-size: 0.9rem; color: var(--text-muted-light); }
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        width: 320px;
+    }
+}
+
+/* === CTA Section Styling === */
+.cta-section {
+    padding: 0 24px 120px 24px; /* Padding on bottom */
+    background: var(--plegma-white);
+}
+
+.cta-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--plegma-blue);
+    color: #fff;
+    border-radius: 24px;
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.cta-container h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+}
+
+.cta-container p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin: 0 0 40px 0;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-cta {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-cta-primary {
+    background-color: #fff;
+    color: var(--plegma-blue);
+}
+.btn-cta-primary:hover {
+    background-color: #eee;
+    transform: translateY(-3px);
+}
+
+.btn-cta-secondary {
+    background-color: var(--plegma-black);
+    color: #fff;
+}
+.btn-cta-secondary:hover {
+    background-color: #222;
+    transform: translateY(-3px);
+}

@@ -1,0 +1,248 @@
+/* === GENERAL STYLES & VARIABLES === */
+:root {
+    /* -- REWRITTEN COLOR PALETTE -- */
+    /* Set the background to the requested color */
+    --bg-color: #dddfff;
+    /* A modern, professional blue that complements the background */
+    --brand-blue: #4f46e5;
+    --brand-blue-dark: #4338ca;
+    /* Text colors with good contrast */
+    --text-dark: #1f2937;
+    --text-muted: #4b5563;
+    /* The main card background will be pure white for a clean look */
+    --card-bg: #ffffff;
+    /* A border color that is visible but not harsh against the new bg */
+    --border-color: #d1d5db;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    /* -- NEW BACKGROUND -- */
+    /* Using a subtle radial gradient to add depth and visual interest */
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle, #e6e9ff, #dddfff);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+/* Ensure the navbar placeholder takes up space before the navbar loads */
+#navbar-placeholder {
+    height: 80px; /* Adjust if your navbar has a different height */
+}
+
+/* === MAIN PAGE WRAPPER === */
+/* This container centers our main content vertically and horizontally */
+main.contact-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 160px); /* Full viewport height minus navbar and some footer space */
+    padding: 80px 24px;
+    box-sizing: border-box;
+}
+
+/* === MAIN CONTACT SECTION (THE CARD) === */
+.contact-section {
+    display: flex;
+    width: 100%;
+    max-width: 1200px; /* A common max-width for large screens */
+    margin: 0 auto;
+    background-color: var(--card-bg); /* White card background */
+    border-radius: 24px; /* Softer, modern rounded corners */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); /* A more pronounced shadow */
+    overflow: hidden; /* Crucial for keeping the children within the rounded corners */
+
+    /* Initially hide the element to be revealed by GSAP */
+    opacity: 0;
+}
+
+/* === LEFT SIDE: CONTACT INFO === */
+.contact-info {
+    flex: 0 0 40%; /* Takes up 40% of the width */
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f8f9fc; /* A slightly off-white to differentiate from the form */
+    border-right: 1px solid var(--border-color);
+}
+
+.info-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    color: var(--text-dark);
+}
+
+.info-header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 450px;
+}
+
+.info-details {
+    margin: 48px 0;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.info-icon {
+    width: 28px;
+    height: 28px;
+    stroke: var(--brand-blue);
+    stroke-width: 1.5;
+    flex-shrink: 0;
+}
+
+.info-text span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+.info-text a, .info-text strong {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.info-text a:hover {
+    color: var(--brand-blue);
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+    margin-top: auto; /* Pushes to the bottom of the flex container */
+}
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--text-muted);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.social-links a:hover {
+    background-color: var(--brand-blue);
+    color: white;
+    transform: translateY(-4px) scale(1.1);
+}
+.social-links svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* === RIGHT SIDE: CONTACT FORM === */
+.contact-form-wrapper {
+    flex: 1; /* Takes the remaining space */
+    padding: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main-contact-form {
+    width: 100%;
+    max-width: 550px;
+}
+
+.form-row {
+    display: flex;
+    gap: 24px;
+}
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--brand-blue);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    position: relative; /* Needed for child element positioning in JS */
+    overflow: hidden; /* Hide anything that moves outside the button */
+}
+.submit-btn:hover {
+    background-color: var(--brand-blue-dark);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1024px) {
+    main.contact-page {
+        padding: 40px 24px;
+        align-items: flex-start; /* Don't force vertical center on smaller screens */
+    }
+    .contact-section {
+        flex-direction: column; /* Stack the columns vertically */
+    }
+    .contact-info {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .contact-info, .contact-form-wrapper {
+        flex: 1 1 100%;
+        padding: 48px;
+    }
+}
+
+@media (max-width: 640px) {
+    main.contact-page {
+        padding: 20px 16px;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .contact-info, .contact-form-wrapper {
+        padding: 32px 24px;
+    }
+}

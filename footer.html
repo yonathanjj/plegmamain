@@ -1,0 +1,318 @@
+<style>
+   .site-footer {
+       position: relative;
+       background-color: #111111;
+       color: var(--text-light, #EAEAEA);
+       background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
+       background-size: 30px 30px;
+       padding: 100px 24px 20px 24px;
+       border-top-left-radius: 20px;
+       border-top-right-radius: 20px;
+       margin-top: 50px;
+   }
+
+   .footer-container {
+       max-width: 1300px;
+       margin: 0 auto;
+   }
+
+   .footer-top {
+       display: flex;
+       justify-content: space-between;
+       align-items: flex-start;
+       flex-wrap: wrap;
+       gap: 40px;
+       margin-bottom: 80px;
+   }
+
+   .footer-branding {
+       display: flex;
+       gap: 40px;
+       align-items: center;
+       flex-wrap: wrap;
+   }
+
+   .footer-logo {
+       flex-shrink: 0;
+   }
+
+   .footer-logo-img {
+       width: 140px;
+       height: auto;
+   }
+
+   .footer-headline h2 {
+       font-size: clamp(2.5rem, 5vw, 4rem);
+       font-weight: 600;
+       line-height: 1.1;
+       margin: 0;
+       max-width: 500px;
+   }
+
+   .footer-top-right {
+       display: flex;
+       flex-direction: column;
+       align-items: flex-end;
+       gap: 30px;
+   }
+
+   .footer-social-icons {
+       display: flex;
+       gap: 12px;
+   }
+   .footer-social-icons a {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 40px;
+       height: 40px;
+       border: 1px solid #444;
+       border-radius: 8px;
+       color: #999;
+       transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+   }
+   .footer-social-icons a:hover {
+       /* Updated hover color to blue */
+       background-color: var(--brand-blue, #0000FF); /* CHANGED */
+       border-color: var(--brand-blue, #0000FF); /* CHANGED */
+       color: white;
+   }
+   .footer-social-icons svg {
+       width: 20px;
+       height: 20px;
+   }
+
+   .footer-cta-button {
+       display: inline-flex;
+       align-items: center;
+       gap: 10px;
+       /* Updated CTA color to blue */
+       background-color: var(--brand-blue, #0000FF); /* CHANGED */
+       color: white;
+       padding: 16px 32px;
+       border-radius: 8px;
+       text-decoration: none;
+       font-weight: 600;
+       transition: all 0.3s ease;
+   }
+   .footer-cta-button:hover {
+       opacity: 0.9;
+       transform: translateY(-2px);
+   }
+   .footer-cta-button svg {
+       transition: transform 0.3s ease;
+   }
+   .footer-cta-button:hover svg {
+       transform: rotate(-45deg);
+   }
+
+   .footer-links-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+       gap: 40px;
+       padding-bottom: 60px;
+   }
+
+   .footer-column h4 {
+       font-size: 0.8rem;
+       color: var(--text-muted, #888);
+       text-transform: uppercase;
+       letter-spacing: 1px;
+       margin-bottom: 24px;
+       font-weight: 500;
+   }
+   .footer-column ul { list-style: none; padding: 0; margin: 0; }
+   .footer-column li { margin-bottom: 15px; }
+   .footer-column a {
+       text-decoration: none;
+       color: var(--text-light, #EAEAEA);
+       transition: color 0.3s;
+   }
+   /* Updated hover color to blue */
+   .footer-column a:hover { color: var(--brand-blue, #0000FF); } /* CHANGED */
+
+   .footer-bottom {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       flex-wrap: wrap;
+       gap: 20px;
+       padding-top: 30px;
+       border-top: 1px solid #222;
+       font-size: 0.85rem;
+       color: var(--text-muted, #888);
+   }
+   .footer-bottom-links {
+       display: flex;
+       gap: 25px;
+   }
+   .footer-bottom-links a {
+       text-decoration: none;
+       color: var(--text-muted, #888);
+       transition: color 0.3s;
+   }
+   .footer-bottom-links a:hover { color: var(--text-light, #EAEAEA); }
+
+   .back-to-top {
+       position: fixed;
+       bottom: 30px;
+       right: 30px;
+       width: 50px;
+       height: 50px;
+       background-color: white;
+       border-radius: 12px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       cursor: pointer;
+       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+       opacity: 0;
+       visibility: hidden;
+       transform: translateY(20px);
+       transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+       z-index: 500;
+   }
+   .back-to-top.visible {
+       opacity: 1;
+       visibility: visible;
+       transform: translateY(0);
+   }
+   .back-to-top:hover {
+       background-color: #f0f0f0;
+   }
+   .back-to-top svg {
+       width: 24px;
+       height: 24px;
+       stroke: #333;
+   }
+
+   @media (max-width: 768px) {
+       .footer-branding {
+           flex-direction: column;
+           align-items: flex-start;
+       }
+       .footer-logo-img {
+           width: 100px;
+       }
+       .footer-top-right {
+           align-items: flex-start;
+           width: 100%;
+       }
+       .footer-cta-button {
+           width: 100%;
+           justify-content: center;
+       }
+   }
+</style>
+
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-top">
+      <div class="footer-branding">
+        <div class="footer-logo">
+          <img src="assets/img/logo.png" alt="SoftWorks Logo" class="footer-logo-img">
+        </div>
+        <div class="footer-headline">
+          <h2>The Digital Business Builder</h2>
+        </div>
+      </div>
+      <div class="footer-top-right">
+        <div class="footer-social-icons">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        </div>
+        <a href="#" class="footer-cta-button">
+          <span>Get in touch</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.16699 12.8337L12.8337 1.16699M12.8337 1.16699H1.16699M12.8337 1.16699V12.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-links-grid">
+      <div class="footer-column">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Custom Web Development</a></li>
+          <li><a href="#">ERP Implementations</a></li>
+          <li><a href="#">AI & ML Solutions</a></li>
+          <li><a href="#">Cloud Architecture</a></li>
+          <li><a href="#">UI/UX Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="#">Finance & Banking</a></li>
+          <li><a href="#">Healthcare</a></li>
+          <li><a href="#">E-commerce & Retail</a></li>
+          <li><a href="#">Logistics & Supply Chain</a></li>
+          <li><a href="#">SaaS</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Process</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press Center</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Whitepapers</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2024 plegma Inc.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Image Credits</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<a class="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+
+<script>
+  // --- BACK TO TOP BUTTON SCRIPT ---
+  const backToTopButton = document.querySelector('.back-to-top');
+
+  const toggleBackToTopButton = () => {
+      if (window.scrollY > 300) {
+          backToTopButton.classList.add('visible');
+      } else {
+          backToTopButton.classList.remove('visible');
+      }
+  };
+
+  backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  });
+
+  window.addEventListener('scroll', toggleBackToTopButton);
+</script>

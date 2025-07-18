@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Plegma - Our Mission and Vision</title>
+
+  <!-- Google Fonts (Playfair for Headings, Inter for Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/about.css">
+</head>
+<style>
+  /* =================================================== */
+/*        CORRECTED ABOUT PAGE STYLES (REPLACE OLD)      */
+/* =================================================== */
+
+/* --- General page background --- */
+body.about-page {
+    background-color: var(--color-light-bg);
+}
+
+/* --- Shared h2 style for this page --- */
+.about-page h2 {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 2.25rem;
+    color: var(--color-text-dark);
+    margin-bottom: 60px;
+}
+
+/* --- A new solid light button style --- */
+.btn-light-solid {
+    background-color: var(--color-white);
+    color: var(--color-bright-blue);
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-white);
+}
+.btn-light-solid:hover {
+    background-color: #f0f0f0;
+    border-color: #f0f0f0;
+}
+
+
+/* --- About Hero --- */
+.about-hero {
+    text-align: center;
+    padding: 100px 0 80px 0;
+}
+.about-hero-title {
+    font-size: 3.5rem;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    color: var(--color-text-dark);
+    font-family: var(--font-body); /* Using Inter bold as per design */
+    font-weight: 800;
+}
+.about-hero-subtitle {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+/* --- Mission & Vision --- */
+.mission-vision {
+    padding-top: 0;
+    padding-bottom: 100px;
+}
+.mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+.mv-card {
+    padding: 40px;
+    border-radius: 20px;
+    background: var(--color-bright-blue);
+    position: relative; /* For the gradient overlay */
+    overflow: hidden; /* Hide overflowing gradient */
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+}
+/* This pseudo-element creates the fade effect at the bottom */
+.mv-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, var(--color-bright-blue), transparent);
+    pointer-events: none; /* Allows clicking through the gradient */
+}
+.mv-card h3 {
+    font-family: var(--font-body);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: var(--color-white);
+}
+.mv-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mv-card p {
+    font-size: 1.25rem;
+    max-width: 90%;
+    color: #cccdff;
+    line-height: 1.6;
+}
+.mv-icon {
+    align-self: flex-end;
+    margin-top: 20px;
+}
+.mv-icon svg path {
+    stroke: var(--color-white); /* Changed to white to match the fade */
+}
+
+
+/* --- What We Stand For --- */
+.we-stand-for {
+    padding-bottom: 100px;
+}
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+}
+.value-item {
+    padding: 40px;
+    border-bottom: 1px solid #d1d5db;
+}
+/* Add right border to all but the last item in each row */
+.value-item:not(:nth-child(3n)) {
+    border-right: 1px solid #d1d5db;
+}
+/* Remove bottom border from the last row */
+.value-item:nth-child(n+4) {
+    border-bottom: none;
+}
+.value-item h4 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    color: var(--color-text-dark);
+}
+.value-item p {
+    color: var(--color-text-muted);
+}
+
+
+/* --- Our Presence --- */
+.our-presence {
+    padding-bottom: 100px;
+}
+.presence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+.location-card .map-container {
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    height: 350px;
+    border: 1px solid #e5e7eb;
+}
+.location-card iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.location-card h3 {
+    text-align: center;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* --- About Page CTA --- */
+.about-cta {
+    padding-top: 0;
+    padding-bottom: 100px;
+}
+.about-cta .cta-box h2 {
+    font-family: var(--font-body);
+    font-weight: 800;
+}
+.about-cta .cta-buttons {
+    margin-top: 20px;
+}
+
+/* =================================================== */
+/*          ABOUT PAGE - RESPONSIVE STYLES (CORRECTED)   */
+/* =================================================== */
+@media (max-width: 992px) {
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    /* Reset borders for 2-column layout */
+    .value-item:not(:nth-child(3n)) { border-right: none; }
+    .value-item:nth-child(n+4) { border-bottom: 1px solid #d1d5db; }
+    .value-item:nth-child(n+5) { border-bottom: none; }
+    .value-item:nth-child(odd) { border-right: 1px solid #d1d5db; }
+}
+
+@media (max-width: 768px) {
+    .about-hero-title { font-size: 2.5rem; }
+    .mv-grid, .presence-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+    .about-hero-title { font-size: 2rem; }
+    .values-grid { grid-template-columns: 1fr; }
+    /* Reset all borders for 1-column layout */
+    .value-item { border-right: none !important; }
+    .value-item:not(:last-child) { border-bottom: 1px solid #d1d5db; }
+    .value-item:last-child { border-bottom: none; }
+}
+</style>
+<body class="about-page">
+
+<!-- NAV BAR WILL BE LOADED DYNAMICALLY -->
+<!-- <nav>...</nav> -->
+<main>
+  <!-- ============================================ -->
+  <!--                  ABOUT HERO                  -->
+  <!-- ============================================ -->
+  <section class="about-hero">
+    <div class="container">
+      <h1 class="about-hero-title">More than developers. We're builders of better systems.</h1>
+      <p class="about-hero-subtitle">At Plegma, we're on a mission to simplify business operations through software that fits. Founded in Ethiopia and Rwanda, we specialize in ERP systems and business tools tailored to African teams.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--              MISSION & VISION                -->
+  <!-- ============================================ -->
+  <section class="mission-vision">
+    <div class="container">
+      <div class="mv-grid">
+        <div class="mv-card">
+          <h3>Mission</h3>
+          <div class="mv-content">
+            <p>To empower African businesses by building digital tools that are tailored, scalable, and truly useful.</p>
+            <div class="mv-icon">
+              <svg width="44" height="38" viewBox="0 0 44 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 2L2 36H42L22 2Z" stroke="#0000FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="mv-card">
+          <h3>Vision</h3>
+          <div class="mv-content">
+            <p>A continent where every business can grow with clarity and confidence, powered by thoughtful software.</p>
+            <div class="mv-icon">
+              <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M35 21C35 28.732 28.732 35 21 35C13.268 35 7 28.732 7 21C7 13.268 13.268 7 21 7C28.732 7 35 13.268 35 21Z" stroke="#0000FF" stroke-width="3"/>
+                <path d="M28 21C28 24.866 24.866 28 21 28C17.134 28 14 24.866 14 21C14 17.134 17.134 14 21 14C24.866 14 28 17.134 28 21Z" stroke="#0000FF" stroke-width="3"/>
+                <path d="M21 2V7" stroke="#0000FF" stroke-width="3" stroke-linecap="round"/>
+                <path d="M21 35V40" stroke="#0000FF" stroke-width="3" stroke-linecap="round"/>
+                <path d="M40 21H35" stroke="#0000FF" stroke-width="3" stroke-linecap="round"/>
+                <path d="M7 21H2" stroke="#0000FF" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--              WHAT WE STAND FOR               -->
+  <!-- ============================================ -->
+  <section class="we-stand-for">
+    <div class="container">
+      <h2>What We Stand For</h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <h4>Clarity</h4>
+          <p>We simplify complexity.</p>
+        </div>
+        <div class="value-item">
+          <h4>Efficiency</h4>
+          <p>Built to save time and resources.</p>
+        </div>
+        <div class="value-item">
+          <h4>Local Insight</h4>
+          <p>Grounded in African business needs.</p>
+        </div>
+        <div class="value-item">
+          <h4>Partnership</h4>
+          <p>We work with you, not just for you.</p>
+        </div>
+        <div class="value-item">
+          <h4>Innovation</h4>
+          <p>We don't follow trends; we build better ones.</p>
+        </div>
+        <div class="value-item">
+          <h4>Ownership</h4>
+          <p>Your success is our responsibility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--                 OUR PRESENCE                 -->
+  <!-- ============================================ -->
+  <section class="our-presence">
+    <div class="container">
+      <h2>Our Presence</h2>
+      <div class="presence-grid">
+        <div class="location-card">
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126083.56581414417!2d38.68377704707107!3d9.022736113854737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85cef5ab402d%3A0x8467b6b037a24d49!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1695503290231!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <h3>Addis Ababa, Ethiopia — HQ</h3>
+        </div>
+        <div class="location-card">
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63800.61286952003!2d30.01665034608759!3d-1.954613291583569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4258ed8e797%3A0xf32b36a5411d0bc8!2sKigali%2C%20Rwanda!5e0!3m2!1sen!2sus!4v1695503370319!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <h3>Kigali, Rwanda — Regional Office</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--               ABOUT PAGE CTA                 -->
+  <!-- ============================================ -->
+  <section class="cta-section about-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Want to partner with us?</h2>
+        <p>Let's talk about how we can build something great together.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-light-solid">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER WILL BE LOADED DYNAMICALLY -->
+<!-- <footer>...</footer> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="assets/js/about.js"></script>
+
+</body>
+</html>

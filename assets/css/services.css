@@ -1,0 +1,169 @@
+/* =================================================== */
+/*                 ERP SOLUTIONS PAGE STYLES           */
+/* =================================================== */
+
+/* --- General page background --- */
+body.erp-page {
+    background-color: var(--color-light-bg);
+}
+
+/* --- Shared h2 style for this page --- */
+.erp-page h2 {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 2.25rem;
+    color: var(--color-text-dark);
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+/* --- ERP Hero --- */
+.erp-hero {
+    text-align: center;
+    padding: 100px 0 80px 0;
+}
+.erp-hero-title {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 3.5rem;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    color: var(--color-text-dark);
+}
+.erp-hero-subtitle {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+.erp-hero-image {
+    margin-top: 50px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* --- What You Get --- */
+.what-you-get {
+    padding-bottom: 80px;
+}
+.features-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.features-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.features-list li {
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 10px 0 10px 25px;
+    position: relative;
+}
+.features-list li::before {
+    content: '•';
+    color: var(--color-bright-blue);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* --- ERP Workflow --- */
+.erp-workflow {
+    padding-bottom: 100px;
+}
+.workflow-steps {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.workflow-step {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 30px 0;
+    border-bottom: 1px solid #d1d5db;
+}
+.step-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+    min-width: 50px;
+    text-align: center;
+}
+.step-connector {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #d1d5db;
+    position: relative;
+}
+.step-connector::after {
+    content: '►';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d1d5db;
+    font-size: 0.8rem;
+}
+.step-description {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    flex-basis: 50%;
+}
+
+/* --- ERP in Action --- */
+.erp-in-action {
+    padding-bottom: 100px;
+}
+.video-wrapper {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.2);
+}
+.erp-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.play-button-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    z-index: 10;
+}
+.video-wrapper.is-playing .play-button-overlay {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    pointer-events: none;
+}
+.play-button-overlay:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* =================================================== */
+/*            ERP PAGE - RESPONSIVE STYLES             */
+/* =================================================== */
+@media (max-width: 768px) {
+    .erp-hero-title { font-size: 2.5rem; }
+    .features-list { grid-template-columns: 1fr; }
+    .workflow-step { flex-wrap: wrap; }
+    .step-description { font-size: 1.2rem; flex-basis: 100%; text-align: center; margin-top: 10px; }
+    .step-number { flex-basis: 10%; }
+    .step-connector { flex-basis: 80%; }
+}
